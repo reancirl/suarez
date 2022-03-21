@@ -8,11 +8,30 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    User Management
-                </div>
-            </div>
+            <x-table>
+                <x-slot name="head">
+                    <x-thead>Name</x-thead>
+                    <x-thead>Email</x-thead>
+                    <x-thead>Role</x-thead>
+                    <x-thead>Zone</x-thead>
+                    <x-thead>Action</x-thead>
+                </x-slot>
+                <x-slot name="body">
+                    @foreach ($data as $i => $d)
+                        <x-trow>
+                            <x-tdata>{{ $d->name }}</x-tdata>
+                            <x-tdata>{{ $d->email }}</x-tdata>
+                            <x-tdata>{{ $d->role }}</x-tdata>
+                            <x-tdata>{{ $d->zone_id ?? 'N/A' }}</x-tdata>
+                            <x-tdata>
+                                <x-a-tag :href="route('user-management.edit',$d->id)">Edit</x-a-tag>
+                                -
+                                <x-a-tag :data-url="route('user-management.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
+                            </x-tdata>
+                        </x-trow>
+                    @endforeach                    
+                </x-slot>
+            </x-table>
         </div>
     </div>
 </x-app-layout>

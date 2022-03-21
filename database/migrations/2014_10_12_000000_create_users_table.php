@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('role')->default('admin');
+            $table->integer('zone_id')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
