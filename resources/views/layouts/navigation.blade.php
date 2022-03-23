@@ -18,7 +18,7 @@
                     </x-nav-link>
 
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                        <x-nav-link :href="route('dashboard')" :active="request()->is('zone')">
+                        <x-nav-link :href="route('zone.index')" :active="request()->is('zone*')">
                             {{ __('Zone') }}
                         </x-nav-link>
                     @endif

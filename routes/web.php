@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function() {
     Route::resource('user-management',UserManagementController::class);
+    Route::resource('zone',ZoneController::class);
 
     Route::get('/dashboard', function () {
         return view('dashboard');

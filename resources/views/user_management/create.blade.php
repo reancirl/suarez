@@ -49,9 +49,10 @@
                             <div class="w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="password" :value="__('Zone')" class="zone" />
                                 <x-select class="w-full zone" name="zone_id">
-                                    <x-slot name="content">
-
-                                    </x-slot>
+                                    <option value="">-- Select --</option>
+                                    @foreach($data as $i => $d)
+                                        <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                    @endforeach
                                 </x-select>
                             </div>
                         </div>

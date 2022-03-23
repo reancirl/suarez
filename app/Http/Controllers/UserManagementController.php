@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Zone;
 
 class UserManagementController extends Controller
 {
@@ -13,6 +14,7 @@ class UserManagementController extends Controller
     {
         $data = User::where('id','!=',1)
                     ->where('id','!=',auth()->id())
+                    ->with('zone')
                     ->latest()
                     ->get();
 
@@ -21,7 +23,12 @@ class UserManagementController extends Controller
 
     public function create()
     {
-        return view('user_management.create');
+        $data = Zone::leftJoin('users as u','u.zone_id','zones.id')
+                    ->whereNull('u.id')
+                    ->select('zones.*')
+                    ->get();
+                    
+        return view('user_management.create',compact('data'));
     }
 
     public function store(Request $request)
@@ -59,7 +66,7 @@ class UserManagementController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect('/user-management')->with('status','Sucessfully registered new user!');
+        return redirect()->back()->with('status','Sucessfully updated user!');
     }
 
     public function destroy($id)
