@@ -50,9 +50,11 @@
                             <div class="w-1/2 px-3 mb-6 md:mb-0" style="display: {{ $data->role == 'leader' ? 'block' : 'none' }};">
                                 <x-label for="password" :value="__('Zone')" class="zone" />
                                 <x-select class="w-full zone" name="zone_id">
-                                    <x-slot name="content">
-
-                                    </x-slot>
+                                    <option value="">-- Select --</option>
+                                    <option value="{{ $data->zone->id }}" selected>{{ $data->zone->name }}</option>
+                                    @foreach($zones as $i => $z)
+                                        <option value="{{ $z->id }}">{{ $z->name }}</option>
+                                    @endforeach
                                 </x-select>
                             </div>
                         </div>

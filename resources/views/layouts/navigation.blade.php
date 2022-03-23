@@ -13,11 +13,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->is('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
+                    
+                        <x-nav-link :href="route('dashboard')" :active="request()->is('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+
                         <x-nav-link :href="route('zone.index')" :active="request()->is('zone*')">
                             {{ __('Zone') }}
                         </x-nav-link>

@@ -45,7 +45,12 @@ class UserManagementController extends Controller
     {
         $data = User::find($id);
 
-        return view('user_management.edit',compact('data'));
+        $zones = Zone::leftJoin('users as u','u.zone_id','zones.id')
+                    ->whereNull('u.id')
+                    ->select('zones.*')
+                    ->get();
+
+        return view('user_management.edit',compact('data','zones'));
     }
 
     public function update(Request $request, $id)
@@ -58,12 +63,14 @@ class UserManagementController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required']
         ]);
+        
 
         $user->update([
             'name' => ucwords($request->name),
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
+            'zone_id' => $request->zone_id
         ]);
 
         return redirect()->back()->with('status','Sucessfully updated user!');
