@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\ZoneController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +24,9 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function() {
     Route::resource('user-management',UserManagementController::class);
     Route::resource('zone',ZoneController::class);
+    Route::resource('resident',ResidentController::class);
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

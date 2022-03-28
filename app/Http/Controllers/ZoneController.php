@@ -10,7 +10,10 @@ class ZoneController extends Controller
 {
     public function index()
     {
-        $data = Zone::with('leader')->get();
+        $data = Zone::with('leader')
+                        ->withCount('residents')
+                        ->get();
+
         return view('zone.index',compact('data'));
     }
 

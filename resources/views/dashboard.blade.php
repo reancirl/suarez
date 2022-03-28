@@ -10,12 +10,12 @@
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div class="shadow rounded-lg py-3 px-5 bg-white text-center">
                 <h6 class="text-2xl">Zones</h6>
-                <h4 class="text-black text-4xl font-bold">38</h4>
+                <h4 class="text-black text-4xl font-bold">{{ $zone_count }}</h4>
                 <p><span class="text-teal-500 font-bold">Total number of zones</p>
             </div>
             <div class="shadow rounded-lg py-3 px-5 bg-white text-center">
                 <h6 class="text-2xl">Residents</h6>
-                <h4 class="text-black text-4xl font-bold">40,000</h4>
+                <h4 class="text-black text-4xl font-bold">{{ $resident_count }}</h4>
                 <p><span class="text-teal-500 font-bold">Total number of residents</p>
             </div>
             <div class="shadow rounded-lg py-3 px-5 bg-white text-center">

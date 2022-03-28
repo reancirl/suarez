@@ -20,7 +20,7 @@
                     @foreach ($data as $i => $d)
                         <x-trow>
                             <x-tdata>{{ $d->name }}</x-tdata>
-                            <x-tdata>0</x-tdata>
+                            <x-tdata>{{ $d->residents_count }}</x-tdata>
                             <x-tdata>{{ $d->leader ? $d->leader->name : 'N/A' }}</x-tdata>
                             <x-tdata>{{ $d->note ?? 'N/A' }}</x-tdata>
                             <x-tdata>

@@ -24,7 +24,7 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->is('residents')">
+                    <x-nav-link :href="route('resident.index')" :active="request()->is('resident*')">
                         {{ __('Residents') }}
                     </x-nav-link>
 
@@ -95,11 +95,11 @@
             </x-responsive-nav-link>
 
             @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('zone')">
+                <x-responsive-nav-link :href="route('zone.index')" :active="request()->routeIs('zone')">
                     {{ __('Zone') }}
                 </x-responsive-nav-link>
             @endif
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('residents')">
+            <x-responsive-nav-link :href="route('resident.index')" :active="request()->routeIs('resident*')">
                 {{ __('Residents') }}
             </x-responsive-nav-link>
 
@@ -112,7 +112,7 @@
                     {{ __('Reports') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('user-management')">
+                <x-responsive-nav-link :href="route('user-management.index')" :active="request()->routeIs('user-management')">
                     {{ __('User Management') }}
                 </x-responsive-nav-link>
             @endif

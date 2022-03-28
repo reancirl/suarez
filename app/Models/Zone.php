@@ -13,4 +13,8 @@ class Zone extends Model
     public function leader() {
         return $this->belongsTo('App\Models\User','id','zone_id');
     }
+
+    public function residents() {
+        return $this->hasMany('App\Models\Resident','zone_id','id');
+    }
 }
