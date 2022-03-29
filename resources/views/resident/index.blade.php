@@ -24,9 +24,13 @@
                             <x-tdata>{{ $d->phone_number }}</x-tdata>
                             <x-tdata>{{ $d->age }}</x-tdata>
                             <x-tdata>
-                                <x-a-tag :href="route('resident.edit',$d->id)">Edit</x-a-tag>
-                                -
-                                <x-a-tag :data-url="route('resident.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
+                                @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
+                                    <x-a-tag :href="route('resident.edit',$d->id)" class="cursor-pointer">Edit</x-a-tag>
+                                    -
+                                    <x-a-tag :data-url="route('resident.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
+                                @else
+                                    <x-a-tag class="cursor-pointer">Clear Liabilities</x-a-tag>
+                                @endif
                             </x-tdata>
                         </x-trow>
                     @endforeach  
