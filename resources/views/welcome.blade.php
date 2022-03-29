@@ -111,7 +111,7 @@
         <input type="hidden" id="date-value">
     </form>
 
-    <footer class="page-footer font-small bg-dark footer">
+    <footer class="page-footer font-small bg-dark" style="position: absolute;bottom:0;width: 100%;">
         <div class="footer-copyright text-center py-3 text-white">© 2022 Copyright |
             <a href="/" class="text-white font-italic">suarez.gasa.tech</a>
         </div>
