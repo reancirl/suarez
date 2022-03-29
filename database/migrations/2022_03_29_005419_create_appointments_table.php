@@ -18,11 +18,11 @@ return new class extends Migration
             $table->date('date');
             $table->string('time');
             $table->string('status');
+            $table->integer('count');
             $table->string('document_type');
             $table->integer('resident_id');
-            $table->string('document_type');
             $table->string('purpose');
-            $table->date('date_issued');
+            $table->date('date_issued')->nullable();
             $table->timestamps();
         });
     }

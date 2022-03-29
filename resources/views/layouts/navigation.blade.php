@@ -28,7 +28,7 @@
                         {{ __('Residents') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->is('appointments*')">
+                    <x-nav-link :href="route('appointment.index')" :active="request()->is('appointments*')">
                         {{ __('Appointments') }}
                     </x-nav-link>
 
@@ -105,7 +105,7 @@
                 {{ __('Residents') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('appointment*')">
+            <x-responsive-nav-link :href="route('appointment.index')" :active="request()->routeIs('appointment*')">
                 {{ __('Appointments') }}
             </x-responsive-nav-link>
 

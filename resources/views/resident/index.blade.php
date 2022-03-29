@@ -11,18 +11,18 @@
             <x-table>
                 <x-slot name="head">
                     <x-thead>Name</x-thead>
-                    <x-thead class="hidden">Zone</x-thead>
-                    <x-thead class="hidden">Phone Number</x-thead>
+                    <x-thead class="hidden sm:inline-grid">Zone</x-thead>
                     <x-thead>Age</x-thead>
+                    <x-thead class="hidden sm:inline-grid">Phone Number</x-thead>
                     <x-thead>Action</x-thead>
                 </x-slot>
                 <x-slot name="body">
                     @foreach ($data as $i => $d)
                         <x-trow>
                             <x-tdata>{{ $d->full_name }}</x-tdata>
-                            <x-tdata class="hidden">{{ $d->zone->name }}</x-tdata>
-                            <x-tdata class="hidden">{{ $d->phone_number }}</x-tdata>
+                            <x-tdata class="hidden sm:inline-grid">{{ $d->zone->name }}</x-tdata>
                             <x-tdata>{{ $d->age }}</x-tdata>
+                            <x-tdata class="hidden sm:inline-grid">{{ $d->phone_number }}</x-tdata>
                             <x-tdata>
                                 @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
                                     <x-a-tag :href="route('resident.edit',$d->id)" class="cursor-pointer">Edit</x-a-tag>

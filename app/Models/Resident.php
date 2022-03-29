@@ -13,6 +13,8 @@ class Resident extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['age','full_name'];
+
     public function zone() {
         return $this->belongsTo('App\Models\Zone','zone_id','id');
     }
@@ -22,11 +24,13 @@ class Resident extends Model
         $this->attributes['birthday'] = date('Y-m-d',strtotime($value));
     }
 
-    public function getFullNameAttribute(){
+    public function getFullNameAttribute()
+    {
         return $this->last_name . ', ' . $this->first_name . ' ' . $this->middle_name;
     } 
 
-    public function getAgeAttribute(){
+    public function getAgeAttribute()
+    {
         return Carbon::parse($this->birthday)->age;
     } 
 }

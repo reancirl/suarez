@@ -37,9 +37,11 @@ class ZoneController extends Controller
         $data->note = $request->note;
         $data->save();
 
-        $user = User::find($request->leader);
-        $user->zone_id = $data->id;
-        $user->save();
+        if ($request->leader) {
+            $user = User::find($request->leader);
+            $user->zone_id = $data->id;
+            $user->save();
+        }
 
         return redirect('/zone')->with('status','Sucessfully created zone!');
     }
@@ -79,9 +81,11 @@ class ZoneController extends Controller
 
         $data->save();
         
-        $new_leader = User::find($request->leader);
-        $new_leader->zone_id = $data->id;
-        $new_leader->save();
+        if ($request->leader) {
+            $new_leader = User::find($request->leader);
+            $new_leader->zone_id = $data->id;
+            $new_leader->save();
+        }
 
         return redirect()->back()->with('status','Sucessfully updated zone!');
     }
@@ -90,12 +94,17 @@ class ZoneController extends Controller
     {
         $zone = Zone::find($id);
 
+
         $user = User::where('zone_id',$id)
                     ->first();
 
-        $user->zone_id = NULL;
-        $user->save();
+        if ($user) {
+            $user->zone_id = NULL;
+            $user->save();
+        }
 
+        $zone->name = $zone->name.'-'.'deleted';
+        $zone->save();
         $zone->delete();
 
         return 'success';
