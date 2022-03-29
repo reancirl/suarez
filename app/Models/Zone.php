@@ -14,7 +14,7 @@ class Zone extends Model
         return $this->belongsTo('App\Models\User','id','zone_id');
     }
 
-    public function resident() {
-        return $this->hasOne('App\Models\Resident','zone_id','id');
+    public function residents() {
+        return $this->hasMany('App\Models\Resident','zone_id','id');
     }
 }
