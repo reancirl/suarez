@@ -28,15 +28,17 @@
                         {{ __('Residents') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->is('calendar')">
-                        {{ __('Calendar') }}
+                    <x-nav-link :href="route('dashboard')" :active="request()->is('appointments*')">
+                        {{ __('Appointments') }}
                     </x-nav-link>
 
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
                         <x-nav-link :href="route('dashboard')" :active="request()->is('reports')">
                             {{ __('Reports') }}
                         </x-nav-link>
+                    @endif
 
+                    @if( auth()->user()->role == 'admin' )
                         <x-nav-link :href="route('user-management.index')" :active="request()->is('user-management*')">
                             {{ __('User Management') }}
                         </x-nav-link>
@@ -103,15 +105,17 @@
                 {{ __('Residents') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('calendar')">
-                {{ __('Calendar') }}
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('appointment*')">
+                {{ __('Appointments') }}
             </x-responsive-nav-link>
 
             @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('reports')">
                     {{ __('Reports') }}
                 </x-responsive-nav-link>
+            @endif
 
+            @if( auth()->user()->role == 'admin' )
                 <x-responsive-nav-link :href="route('user-management.index')" :active="request()->routeIs('user-management')">
                     {{ __('User Management') }}
                 </x-responsive-nav-link>

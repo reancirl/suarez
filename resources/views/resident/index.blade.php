@@ -11,8 +11,8 @@
             <x-table>
                 <x-slot name="head">
                     <x-thead>Name</x-thead>
-                    <x-thead>Zone</x-thead>
-                    <x-thead>Phone Number</x-thead>
+                    <x-thead class="hidden">Zone</x-thead>
+                    <x-thead class="hidden">Phone Number</x-thead>
                     <x-thead>Age</x-thead>
                     <x-thead>Action</x-thead>
                 </x-slot>
@@ -20,8 +20,8 @@
                     @foreach ($data as $i => $d)
                         <x-trow>
                             <x-tdata>{{ $d->full_name }}</x-tdata>
-                            <x-tdata>{{ $d->zone->name }}</x-tdata>
-                            <x-tdata>{{ $d->phone_number }}</x-tdata>
+                            <x-tdata class="hidden">{{ $d->zone->name }}</x-tdata>
+                            <x-tdata class="hidden">{{ $d->phone_number }}</x-tdata>
                             <x-tdata>{{ $d->age }}</x-tdata>
                             <x-tdata>
                                 @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
@@ -29,7 +29,11 @@
                                     -
                                     <x-a-tag :data-url="route('resident.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
                                 @else
-                                    <x-a-tag class="cursor-pointer">Clear Liabilities</x-a-tag>
+                                    @if( auth()->user()->zone_id == $d->zone_id )
+                                        <x-a-tag class="cursor-pointer">Clear Liabilities</x-a-tag>
+                                    @else
+                                        No Action
+                                    @endif
                                 @endif
                             </x-tdata>
                         </x-trow>
