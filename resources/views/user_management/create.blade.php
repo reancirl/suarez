@@ -41,7 +41,7 @@
                             <div class="w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="role" :value="__('Role')" />
                                 <x-select class="w-full" name="role" id="role">
-                                    <option value="leader">Leader</option>
+                                    <option value="leader">Leader/President</option>
                                     <option value="official">Official</option>
                                     <option value="admin">Admin</option>
                                 </x-select>

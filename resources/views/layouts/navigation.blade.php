@@ -28,13 +28,13 @@
                         {{ __('Residents') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('appointment.index')" :active="request()->is('appointments*')">
+                    <x-nav-link :href="route('appointment.index')" :active="request()->is('appointment*')">
                         {{ __('Appointments') }}
                     </x-nav-link>
 
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
                         <x-nav-link :href="route('dashboard')" :active="request()->is('reports')">
-                            {{ __('Reports') }}
+                            {{ __('Import Data') }}
                         </x-nav-link>
                     @endif
 
@@ -111,7 +111,7 @@
 
             @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('reports')">
-                    {{ __('Reports') }}
+                    {{ __('Import Data') }}
                 </x-responsive-nav-link>
             @endif
 

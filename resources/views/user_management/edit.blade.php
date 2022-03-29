@@ -42,7 +42,7 @@
                             <div class="w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="role" :value="__('Role')" />
                                 <x-select class="w-full" name="role" id="role">
-                                    <option value="leader" {{ $data->role == 'leader' ? 'selected' : '' }}>Leader</option>
+                                    <option value="leader" {{ $data->role == 'leader' ? 'selected' : '' }}>Leader/President</option>
                                     <option value="official" {{ $data->role == 'official' ? 'selected' : '' }} >Official</option>
                                     <option value="admin" {{ $data->role == 'admin' ? 'selected' : '' }} >Admin</option>
                                 </x-select>
@@ -51,7 +51,9 @@
                                 <x-label for="password" :value="__('Zone')" class="zone" />
                                 <x-select class="w-full zone" name="zone_id">
                                     <option value="">-- Select --</option>
-                                    <option value="{{ $data->zone->id }}" selected>{{ $data->zone->name }}</option>
+                                    @if($data->zone)
+                                        <option value="{{ $data->zone->id }}" selected>{{ $data->zone->name }}</option>
+                                    @endif
                                     @foreach($zones as $i => $z)
                                         <option value="{{ $z->id }}">{{ $z->name }}</option>
                                     @endforeach
