@@ -10,7 +10,7 @@ class ResidentController extends Controller
 {
     public function index()
     {
-        $data = Resident::get();
+        $data = Resident::where('zone_id','!=',0)->get();
         return view('resident.index',compact('data'));
     }
 

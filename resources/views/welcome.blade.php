@@ -225,7 +225,7 @@
                             $('#zone-name').val(result.resident.zone.name)
                             $('#age').val(result.resident.age)
                             $('#resident-id-value').val(result.resident.id)
-                            $('#appointment-id-value').val(result.resident.id)
+                            $('#appointment-id-value').val(result.appointment.id)
                         }
 
                         if (result.warning_message !== null) {

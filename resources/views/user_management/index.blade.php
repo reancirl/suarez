@@ -19,10 +19,16 @@
                 <x-slot name="body">
                     @foreach ($data as $i => $d)
                         <x-trow>
-                            <x-tdata>{{ $d->name }}</x-tdata>
+                            <x-tdata>
+                                @if($d->resident)
+                                    {{ $d->resident->last_name }}, {{ $d->resident->first_name }}
+                                @else
+                                    'N/a'
+                                @endif
+                            </x-tdata>
                             <x-tdata>{{ $d->email }}</x-tdata>
                             <x-tdata>{{ $d->role }}</x-tdata>
-                            <x-tdata>{{ $d->zone ? 'Zone '.$d->zone->name : 'N/A' }}</x-tdata>
+                            <x-tdata>{{ $d->zone ? $d->zone->name : 'N/A' }}</x-tdata>
                             <x-tdata>
                                 <x-a-tag :href="route('user-management.edit',$d->id)">Edit</x-a-tag>
                                 -

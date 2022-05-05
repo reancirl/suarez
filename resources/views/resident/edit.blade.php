@@ -37,8 +37,8 @@
                             <div class="w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="gender" :value="__('Gender')" />
                                 <x-select class="w-full" name="gender" id="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male" {{ $resident->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ $resident->gender == 'female' ? 'selected' : '' }}>Female</option>
                                 </x-select>
                             </div>
                             <div class="w-1/2 px-3 mb-6 md:mb-0">
@@ -77,10 +77,10 @@
                             <div class="w-1/3 px-3 mb-6 md:mb-0">
                                 <x-label for="civil_status" :value="__('Civil Status')" />
                                 <x-select class="w-full" name="civil_status" id="civil_status">
-                                    <option value="single">Single</option>
-                                    <option value="married">Married</option>
-                                    <option value="divorced">Divorced</option>
-                                    <option value="widowed">Widowed</option>
+                                    <option value="single" {{ $resident->civil_status == 'single' ? 'selected' : '' }}>Single</option>
+                                    <option value="married" {{ $resident->civil_status == 'married' ? 'selected' : '' }}>Married</option>
+                                    <option value="divorced" {{ $resident->civil_status == 'divorced' ? 'selected' : '' }}>Divorced</option>
+                                    <option value="widowed" {{ $resident->civil_status == 'widowed' ? 'selected' : '' }}>Widowed</option>
                                 </x-select>
                             </div>
                             <div class="w-1/3 px-3 mb-6 md:mb-0">

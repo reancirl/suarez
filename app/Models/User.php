@@ -23,11 +23,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
         'role',
-        'zone_id'
+        'zone_id',
+        'resident_id'
     ];
 
     /**
@@ -48,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function resident() {
+        return $this->belongsTo('App\Models\Resident','resident_id','id');
+    }
 }
