@@ -17,6 +17,7 @@
                 </x-slot>
                 <x-slot name="body">
                     @foreach ($data as $i => $d)
+                        @if($d->resident)
                         <x-trow>
                             <x-tdata>{{ date('M d, Y',strtotime($d->date)) }}</x-tdata>
                             <x-tdata>{{ $d->resident->last_name }}, {{ $d->resident->first_name }} {{ $d->resident->middle_name }}</x-tdata>
@@ -26,6 +27,7 @@
                                 No Action
                             </x-tdata>
                         </x-trow>
+                        @endif
                     @endforeach  
                 </x-slot>
             </x-table>
