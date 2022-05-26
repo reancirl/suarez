@@ -25,6 +25,9 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('appointment',AppointmentController::class);
 
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('import-data',[DashboardController::class, 'import'])->name('import');
+    Route::post('import-data',[DashboardController::class, 'importSave'])->name('import-save');
 });
 
 require __DIR__.'/auth.php';

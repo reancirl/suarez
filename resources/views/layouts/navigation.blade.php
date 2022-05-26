@@ -33,7 +33,7 @@
                     </x-nav-link>
 
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                        <x-nav-link :href="route('dashboard')" :active="request()->is('reports')">
+                        <x-nav-link :href="route('import')" :active="request()->is('import')">
                             {{ __('Import Data') }}
                         </x-nav-link>
                     @endif
@@ -110,7 +110,7 @@
             </x-responsive-nav-link>
 
             @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('reports')">
+                <x-responsive-nav-link :href="route('import')" :active="request()->routeIs('import')">
                     {{ __('Import Data') }}
                 </x-responsive-nav-link>
             @endif
