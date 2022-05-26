@@ -21,26 +21,26 @@ class DashboardController extends Controller
         return view('import',compact('columns'));
     }
 
-    public function importSave()
+    public function importSave(Request $request)
     {
         $success = 0;
         if ($request->import) {
             foreach ($request->import as $i => $import) {
-                $user = User::where('first_name',$import['FirstName'])->where('last_name',$import['LastName'])->where('middle_name',$import['MiddleName'])->first();
+                $user = Resident::where('first_name',$import['FirstName'])->where('last_name',$import['LastName'])->where('middle_name',$import['MiddleName'])->first();
                 $zone = Zone::where('name',$import['ZoneName'])->first();
                 if(!$user && $zone) {
                     $data = new Resident();
-                    $data->first_name = $import('FirstName');
-                    $data->last_name = $import('LastName');
-                    $data->middle_name = $import('MiddleName');
+                    $data->first_name = $import['FirstName'];
+                    $data->last_name = $import['LastName'];
+                    $data->middle_name = $import['MiddleName'];
                     $data->zone_id = $zone->id;
-                    $data->gender = $import('Gender');
-                    $data->birthday = $import('Birthday');
-                    $data->email_address = $import('EmailAddress');
-                    $data->address = $import('Address');
-                    $data->occupation = $import('Occupation');
-                    $data->civil_status = $import('CivilStatus');
-                    $data->phone_number = $import('PhoneNumber');
+                    $data->gender = $import['Gender'];
+                    $data->birthday = $import['Birthday'];
+                    $data->email_address = $import['EmailAddress'];
+                    $data->address = $import['Address'];
+                    $data->occupation = $import['Occupation'];
+                    $data->civil_status = $import['CivilStatus'];
+                    $data->phone_number = $import['PhoneNumber'];
                     $data->save();
                     $success++;
                 }
