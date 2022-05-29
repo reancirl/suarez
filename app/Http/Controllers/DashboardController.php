@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         $zone_count = Zone::count();
         $resident_count = Resident::count();
-        $appointment_count = Appointment::where('date', '>=', date('Y-m-d').' 00:00:00')->count();
+        $appointment_count = Appointment::where('date', date('Y-m-d'))->count();
         return view('dashboard',compact('zone_count','resident_count'));
     }
 
