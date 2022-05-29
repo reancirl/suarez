@@ -11,6 +11,14 @@ class AppointmentController extends Controller
     public function index()
     {
         $data = Appointment::with('resident')->orderBy('date')->get();
+        $user = auth()->user();
+        if ($user->role == 'leader') {
+            $data = Appointment::with(['resident' => function ($query) use ($user) {
+                                $query->where('zone_id', $user->zone_id);
+                            }])
+                            ->orderBy('date')
+                            ->get();
+        }
         return view('appointment.index',compact('data'));
     }
 
@@ -31,12 +39,20 @@ class AppointmentController extends Controller
 
     public function edit(Appointment $appointment)
     {
-        //
+        if ($appointment->status == 'cleared') {
+            $appointment->status = 'not-cleared';
+        } else {
+            $appointment->status = 'cleared';
+        }
+
+        $appointment->save();
+
+        return redirect('/appointment')->with('status','Status updated!');
     }
 
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        
     }
 
     public function destroy(Appointment $appointment)
