@@ -20,7 +20,7 @@
             </div>
             <div class="shadow rounded-lg py-3 px-5 bg-white text-center">
                 <h6 class="text-2xl">Scheduled Today</h6>
-                <h4 class="text-black text-4xl font-bold">0</h4>
+                <h4 class="text-black text-4xl font-bold">{{ $appointment_count }}</h4>
                 <p><span class="text-teal-500 font-bold">Total number of appointments today</p>
             </div>
         </div>
