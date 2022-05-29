@@ -22,7 +22,7 @@
                             <x-tdata>{{ date('M d, Y',strtotime($d->date)) }}</x-tdata>
                             <x-tdata>{{ $d->resident->last_name }}, {{ $d->resident->first_name }} {{ $d->resident->middle_name }}</x-tdata>
                             <x-tdata>{{ $d->status }}</x-tdata>
-                            <x-tdata>{{ $d->resident->zone->name }}</x-tdata>
+                            <x-tdata>{{ $d->resident->zone ? $d->resident->zone->name : 'Zone Deleted' }}</x-tdata>
                             <x-tdata>
                                 No Action
                             </x-tdata>

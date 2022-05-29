@@ -20,7 +20,7 @@
                     @foreach ($data as $i => $d)
                         <x-trow>
                             <x-tdata>{{ $d->full_name }}</x-tdata>
-                            <x-tdata class="hidden sm:inline-grid">{{ $d->zone->name }}</x-tdata>
+                            <x-tdata class="hidden sm:inline-grid">{{ $d->zone-> ? $d->zone->name : 'Zone Deleted' }}</x-tdata>
                             <x-tdata>{{ $d->age }}</x-tdata>
                             <x-tdata class="hidden sm:inline-grid">{{ $d->phone_number }}</x-tdata>
                             <x-tdata>
