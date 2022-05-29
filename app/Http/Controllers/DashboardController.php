@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Zone;
 use App\Models\Resident;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,6 +13,7 @@ class DashboardController extends Controller
     {
         $zone_count = Zone::count();
         $resident_count = Resident::count();
+        $appointment_count = Appointment::where('date', '>=', date('Y-m-d').' 00:00:00')->count();
         return view('dashboard',compact('zone_count','resident_count'));
     }
 
