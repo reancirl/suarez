@@ -53,6 +53,9 @@
       
     <!-- Chart line -->
     <script>
+    var may = '{{ $may_count }}';
+    var june = '{{ $june_count }}';
+
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const data = {
         labels: labels,
@@ -61,7 +64,7 @@
             label: "Indigency Request",
             backgroundColor: "hsl(252, 82.9%, 67.8%)",
             borderColor: "hsl(252, 82.9%, 67.8%)",
-            data: [0, 10, 5, 2, 20, 30, 40, 0, 3, 4, 19 ,10],
+            data: [0, 0, 0, 0, may, june, 0, 0, 0, 0, 0 ,0],
         },
         ],
     };

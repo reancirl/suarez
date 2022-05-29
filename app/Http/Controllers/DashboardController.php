@@ -14,7 +14,10 @@ class DashboardController extends Controller
         $zone_count = Zone::count();
         $resident_count = Resident::count();
         $appointment_count = Appointment::where('date', date('Y-m-d'))->count();
-        return view('dashboard',compact('zone_count','resident_count','appointment_count'));
+
+        $may_count = Appointment::whereMonth('date','05')->where('document_type','indigency')->count();
+        $june_count = Appointment::whereMonth('date','06')->where('document_type','indigency')->count();
+        return view('dashboard',compact('zone_count','resident_count','appointment_count','may_count','june_count'));
     }
 
     public function import() 

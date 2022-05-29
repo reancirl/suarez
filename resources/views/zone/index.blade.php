@@ -21,7 +21,7 @@
                         <x-trow>
                             <x-tdata>{{ $d->name }}</x-tdata>
                             <x-tdata>{{ $d->residents_count }}</x-tdata>
-                            <x-tdata>{{ $d->leader ? $d->leader->name : 'N/A' }}</x-tdata>
+                            <x-tdata>{{ $d->leader ? $d->leader : 'N/A' }}</x-tdata>
                             <x-tdata>{{ $d->note ?? 'N/A' }}</x-tdata>
                             <x-tdata>
                                 <x-a-tag :href="route('zone.edit',$d->id)">Edit</x-a-tag>
