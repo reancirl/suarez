@@ -84,12 +84,12 @@
     <!-- Chart bar -->
     <script>
         const labelsBarChart = [
-        "Zone 1",
-        "Zone 2",
-        "Zone 3",
-        "Zone 4",
-        "Zone 5",
-        "Zone 6",
+        '{{ $zone1 }}',
+        '{{ $zone2 }}',
+        '{{ $zone3 }}',
+        '{{ $zone4 }}',
+        '{{ $zone5 }}',
+        '{{ $zone6 }}',
         ];
         const dataBarChart = {
         labels: labelsBarChart,
@@ -98,7 +98,7 @@
             label: "Population",
             backgroundColor: "hsl(252, 82.9%, 67.8%)",
             borderColor: "hsl(252, 82.9%, 67.8%)",
-            data: [600, 500, 450, 400, 390, 350, 300],
+            data: ['{{ $zone1_count }}', '{{ $zone2_count }}', '{{ $zone3_count }}', '{{ $zone4_count }}', '{{ $zone5_count }}', '{{ $zone6_count }}'],
             },
         ],
         };

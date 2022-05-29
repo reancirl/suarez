@@ -17,7 +17,53 @@ class DashboardController extends Controller
 
         $may_count = Appointment::whereMonth('date','05')->where('document_type','indigency')->count();
         $june_count = Appointment::whereMonth('date','06')->where('document_type','indigency')->count();
-        return view('dashboard',compact('zone_count','resident_count','appointment_count','may_count','june_count'));
+
+        $resident_zone = Zone::withCount('residents')->orderBy('residents_count','desc')->take(6)->get();
+        $zone1 = null;
+        $zone2 = null;
+        $zone3 = null;
+        $zone4 = null;
+        $zone5 = null;
+        $zone6 = null;
+        $zone1_count = null;
+        $zone2_count = null;
+        $zone3_count = null;
+        $zone4_count = null;
+        $zone5_count = null;
+        $zone6_count = null;
+
+        foreach ($resident_zone as $i => $data) {
+            switch ($i) {
+                case 0:
+                    $zone1 = $data->name;
+                    $zone1_count = $data->residents_count;
+                    break;
+                case 1:
+                    $zone2 = $data->name;
+                    $zone2_count = $data->residents_count;
+                    break;
+                case 2:
+                    $zone3 = $data->name;
+                    $zone3_count = $data->residents_count;
+                    break;
+                case 3:
+                    $zone4 = $data->name;
+                    $zone4_count = $data->residents_count;
+                    break;
+                case 4:
+                    $zone5 = $data->name;
+                    $zone5_count = $data->residents_count;
+                    break;
+                case 5:
+                    $zone6 = $data->name;
+                    $zone6_count = $data->residents_count;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return view('dashboard',compact('zone_count','resident_count','appointment_count','may_count','june_count','zone1','zone2','zone3','zone4','zone5','zone6','zone1_count','zone2_count','zone3_count','zone4_count','zone5_count','zone6_count'));
     }
 
     public function import() 
