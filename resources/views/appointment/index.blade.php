@@ -18,21 +18,21 @@
                 <x-slot name="body">
                     @foreach ($data as $i => $d)
                         @if($d->resident)
-                        <x-trow>
-                            <x-tdata>{{ date('M d, Y',strtotime($d->date)) }}</x-tdata>
-                            <x-tdata>{{ $d->resident->last_name }}, {{ $d->resident->first_name }} {{ $d->resident->middle_name }}</x-tdata>
-                            <x-tdata>{{ $d->status }}</x-tdata>
-                            <x-tdata>{{ $d->resident->zone ? $d->resident->zone->name : 'Zone Deleted' }}</x-tdata>
-                            <x-tdata>
-                                @if( $d->status == 'cleared' && (auth()->user()->role == 'admin' || auth()->user()->role == 'official') )
-                                    <x-a-tag>Print</x-a-tag>
-                                @elseif(auth()->user()->role == 'leader')
-                                <x-a-tag :href="route('appointment.edit',$d->id)">Update Status</x-a-tag>
-                                @else
-                                    No Action
-                                @endif
-                            </x-tdata>
-                        </x-trow>
+                            <x-trow>
+                                <x-tdata>{{ date('M d, Y',strtotime($d->date)) }}</x-tdata>
+                                <x-tdata>{{ $d->resident->last_name }}, {{ $d->resident->first_name }} {{ $d->resident->middle_name }}</x-tdata>
+                                <x-tdata>{{ $d->status }}</x-tdata>
+                                <x-tdata>{{ $d->resident->zone ? $d->resident->zone->name : 'Zone Deleted' }}</x-tdata>
+                                <x-tdata>
+                                    @if( $d->status == 'cleared' && (auth()->user()->role == 'admin' || auth()->user()->role == 'official') )
+                                        <x-a-tag>Print</x-a-tag>
+                                    @elseif(auth()->user()->role == 'leader')
+                                    <x-a-tag :href="route('appointment.edit',$d->id)">Update Status</x-a-tag>
+                                    @else
+                                        No Action
+                                    @endif
+                                </x-tdata>
+                            </x-trow>
                         @endif
                     @endforeach  
                 </x-slot>

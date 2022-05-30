@@ -103,7 +103,6 @@ class AppointmentController extends Controller
         $resident = Resident::with('zone')
                             ->where('last_name',$request->last_name)
                             ->where('first_name',$request->first_name)
-                            ->orWhere('middle_name',$request->middle_name)
                             ->first() ?? null;
 
         $error_message = null;
@@ -114,7 +113,7 @@ class AppointmentController extends Controller
             $error_message = 'Your name is not currently in our database! Please recheck details or go to respective ZONE President to add your record!';
         } else {
             $appointment = Appointment::where('resident_id',$resident->id)
-                                        ->where('status','open')
+                                        ->where('status','not-cleared')
                                         ->whereDate('date','>',now()->format('Y-m-d'))
                                         ->first();
             if ($appointment) {

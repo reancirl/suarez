@@ -6,6 +6,7 @@ use App\Models\Zone;
 use App\Models\Resident;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -13,7 +14,8 @@ class DashboardController extends Controller
     {
         $zone_count = Zone::count();
         $resident_count = Resident::count();
-        $appointment_count = Appointment::where('date', date('Y-m-d'))->count();
+        $date = Carbon::now('UTC')->addHour(8)->toDateString();
+        $appointment_count = Appointment::whereDate('date', $date)->count();
 
         $may_count = Appointment::whereMonth('date','05')->where('document_type','indigency')->count();
         $june_count = Appointment::whereMonth('date','06')->where('document_type','indigency')->count();

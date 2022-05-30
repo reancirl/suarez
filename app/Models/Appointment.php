@@ -11,6 +11,6 @@ class Appointment extends Model
     use HasFactory;
 
     public function resident() {
-        return $this->hasOne('App\Models\Resident','zone_id','id');
+        return $this->hasOne('App\Models\Resident','id','resident_id');
     }
 }
