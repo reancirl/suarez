@@ -114,6 +114,7 @@ class AppointmentController extends Controller
         } else {
             $appointment = Appointment::where('resident_id',$resident->id)
                                         ->where('status','not-cleared')
+                                        ->where('document_type',$request->document_type)
                                         ->whereDate('date','>',now()->format('Y-m-d'))
                                         ->first();
             if ($appointment) {
