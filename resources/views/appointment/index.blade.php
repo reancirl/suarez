@@ -25,7 +25,7 @@
                                 <x-tdata>{{ $d->resident->zone ? $d->resident->zone->name : 'Zone Deleted' }}</x-tdata>
                                 <x-tdata>
                                     @if( $d->status == 'cleared' && (auth()->user()->role == 'admin' || auth()->user()->role == 'official') )
-                                        <x-a-tag>Print</x-a-tag>
+                                        <x-a-tag :href="route('appointment.show',$d->id)" target="_blank">Print</x-a-tag>
                                     @elseif(auth()->user()->role == 'leader')
                                     <x-a-tag :href="route('appointment.edit',$d->id)">Update Status</x-a-tag>
                                     @else

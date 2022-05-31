@@ -14,7 +14,9 @@
                     <x-thead class="hidden sm:inline-grid">Zone</x-thead>
                     <x-thead>Age</x-thead>
                     <x-thead class="hidden sm:inline-grid">Phone Number</x-thead>
-                    <x-thead>Action</x-thead>
+                    @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
+                        <x-thead>Action</x-thead>
+                    @endif
                 </x-slot>
                 <x-slot name="body">
                     @foreach ($data as $i => $d)
@@ -23,19 +25,21 @@
                             <x-tdata class="hidden sm:inline-grid">{{ $d->zone ? $d->zone->name : 'Zone Deleted' }}</x-tdata>
                             <x-tdata>{{ $d->age }}</x-tdata>
                             <x-tdata class="hidden sm:inline-grid">{{ $d->phone_number }}</x-tdata>
-                            <x-tdata>
-                                @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                                    <x-a-tag :href="route('resident.edit',$d->id)" class="cursor-pointer">Edit</x-a-tag>
-                                    -
-                                    <x-a-tag :data-url="route('resident.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
-                                @else
-                                    @if( auth()->user()->zone_id == $d->zone_id )
-                                        <x-a-tag class="cursor-pointer">Clear Liabilities</x-a-tag>
+                            @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
+                                <x-tdata>
+                                    @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
+                                        <x-a-tag :href="route('resident.edit',$d->id)" class="cursor-pointer">Edit</x-a-tag>
+                                        -
+                                        <x-a-tag :data-url="route('resident.destroy',$d->id)" class="delete_btn cursor-pointer">Delete</x-a-tag>
                                     @else
-                                        No Action
+                                        @if( auth()->user()->zone_id == $d->zone_id )
+                                            <x-a-tag class="cursor-pointer" :href="route('appointment.index')">Clear Liabilities</x-a-tag>
+                                        @else
+                                            No Action
+                                        @endif
                                     @endif
-                                @endif
-                            </x-tdata>
+                                </x-tdata>
+                            @endif
                         </x-trow>
                     @endforeach  
                 </x-slot>

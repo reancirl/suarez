@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Resident;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
     public function index()
     {
-        $data = Appointment::with('resident')->orderBy('date')->get();
+        $data = Appointment::with('resident')->orderBy('date')->whereDate('date','<=',now()->format('Y-m-d'))->get();
         $user = auth()->user();
         if ($user->role == 'leader') {
             $data = Appointment::with(['resident' => function ($query) use ($user) {
                                 $query->where('zone_id', $user->zone_id);
                             }])
                             ->orderBy('date')
+                            ->whereDate('date','>',now()->format('Y-m-d'))
                             ->get();
         }
         return view('appointment.index',compact('data'));
@@ -32,9 +34,14 @@ class AppointmentController extends Controller
         //
     }
 
-    public function show(Appointment $appointment)
+    public function show($id)
     {
-        //
+        $appointment = Appointment::with('resident')->find($id);
+        $date = Carbon::now('UTC')->addHour(8)->toDateString();
+        $appointment->date_issued = $date;
+        $appointment->save();
+
+        return view('brgy_cert',compact('appointment'));
     }
 
     public function edit(Appointment $appointment)
