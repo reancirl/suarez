@@ -631,6 +631,9 @@ select {
 .pointer-events-auto {
   pointer-events: auto;
 }
+.fixed {
+  position: fixed;
+}
 .absolute {
   position: absolute;
 }
@@ -642,6 +645,9 @@ select {
 }
 .right-0 {
   right: 0px;
+}
+.top-0 {
+  top: 0px;
 }
 .z-0 {
   z-index: 0;
@@ -732,6 +738,15 @@ select {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mt-8 {
+  margin-top: 2rem;
+}
+.ml-12 {
+  margin-left: 3rem;
+}
+.-mt-px {
+  margin-top: -1px;
+}
 .block {
   display: block;
 }
@@ -774,6 +789,9 @@ select {
 .h-10 {
   height: 2.5rem;
 }
+.h-8 {
+  height: 2rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -807,6 +825,9 @@ select {
 .w-1\/2 {
   width: 50%;
 }
+.w-8 {
+  width: 2rem;
+}
 .min-w-full {
   min-width: 100%;
 }
@@ -815,6 +836,12 @@ select {
 }
 .max-w-full {
   max-width: 100%;
+}
+.max-w-xl {
+  max-width: 36rem;
+}
+.max-w-6xl {
+  max-width: 72rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -968,6 +995,9 @@ select {
 .border-b-2 {
   border-bottom-width: 2px;
 }
+.border-r {
+  border-right-width: 1px;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -990,6 +1020,10 @@ select {
 .border-indigo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1133,6 +1167,9 @@ select {
 .pr-8 {
   padding-right: 2rem;
 }
+.pt-8 {
+  padding-top: 2rem;
+}
 .text-left {
   text-align: left;
 }
@@ -1193,6 +1230,9 @@ select {
 }
 .leading-tight {
   line-height: 1.25;
+}
+.leading-7 {
+  line-height: 1.75rem;
 }
 .tracking-widest {
   letter-spacing: 0.1em;
@@ -1259,9 +1299,20 @@ select {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
 }
+.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+.underline-offset-1 {
+  text-underline-offset: 1px;
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;
@@ -1491,6 +1542,11 @@ select {
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-gray-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  }
+
   .dark\:text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1561,6 +1617,10 @@ select {
 
   .sm\:items-center {
     align-items: center;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
   }
 
   .sm\:justify-center {

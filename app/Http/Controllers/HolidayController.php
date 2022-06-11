@@ -9,7 +9,7 @@ class HolidayController extends Controller
 {
     public function index()
     {
-        $data = Holiday::get();
+        $data = Holiday::orderBy('date')->get();
         return view('holiday.index',compact('data'));
     }
 
@@ -44,6 +44,7 @@ class HolidayController extends Controller
 
     public function destroy(Holiday $holiday)
     {
-        //
+        $holiday->delete();
+        return redirect()->back()->with('status','Sucessfully deleted!');
     }
 }

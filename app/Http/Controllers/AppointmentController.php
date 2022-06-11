@@ -12,7 +12,7 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        $data = Appointment::with('resident')->orderBy('date')->whereDate('date','<=',now()->format('Y-m-d'))->get();
+        $data = Appointment::with('resident')->orderBy('date','desc')->whereDate('date','>=',now()->format('Y-m-d'))->get();
         $user = auth()->user();
         if ($user->role == 'leader') {
             $data = Appointment::with(['resident' => function ($query) use ($user) {

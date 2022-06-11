@@ -11,7 +11,7 @@
         <div class="col-span-2">
             <ol class="list-decimal">
                 @foreach ($data as $item)
-                    <li class="mb-2 text-lg">{{ $item->name }} - {{ date('M d, Y',strtotime($item->date)) }}</li>
+                    <li class="mb-2 text-lg"> <span class="text-blue-600 cursor-pointer underline underline-offset-1 holiday_btn" data-url="{{ route('holiday.destroy',$item->id) }}">{{ $item->name }}</span> - {{ date('M d, Y',strtotime($item->date)) }}</li>
                 @endforeach
             </ol>
         </div>
@@ -30,5 +30,23 @@
             </form>
         </div>
     </div>
+    <form method="POST" id="delete_form">
+        @csrf
+        @method('delete')
+    </form>
     <script src="https://unpkg.com/flowbite@1.4.1/dist/datepicker.js"></script>
+    <x-slot name="script">
+        <script>
+            $(document).ready(function(){
+                $('.holiday_btn').click(function(e) {
+                    var url = $(this).data('url')
+                    if (confirm('Do you want to delete this holiday?') == true) {
+                        var form = $('#delete_form')
+                        form.attr('action', url)
+                        form.submit()
+                    }
+                })
+            })
+        </script>
+    </x-slot>
 </x-app-layout>
