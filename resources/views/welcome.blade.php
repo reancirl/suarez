@@ -226,13 +226,14 @@
                 var last_name = $('#last_name').val()
                 var first_name = $('#first_name').val()
                 var middle_name = $('#middle_name').val()
+                var document_type = $('#select-document-type').val()
                 var date = $('#date-value').val()
                 
                 $.ajax({
                     // "_token": "{{ csrf_token() }}",
                     type: 'get',
                     url: '/resident-check',
-                    data: {'last_name': last_name, 'first_name': first_name, 'middle_name': middle_name, 'date': date},
+                    data: {'last_name': last_name, 'first_name': first_name, 'middle_name': middle_name, 'date': date, 'document_type': document_type},
                     success: function (result) {
                         $('#overlay').hide();
                         if (result.error_message !== null) {
