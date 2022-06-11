@@ -33,8 +33,11 @@
                     </x-nav-link>
 
                     @if( auth()->user()->role == 'admin' || auth()->user()->role == 'official' )
-                        <x-nav-link :href="route('import')" :active="request()->is('import')">
+                        <x-nav-link :href="route('import')" :active="request()->is('import-data')">
                             {{ __('Import Data') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('holiday.index')" :active="request()->is('holiday*')">
+                            {{ __('Holidays') }}
                         </x-nav-link>
                     @endif
 

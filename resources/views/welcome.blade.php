@@ -46,6 +46,7 @@
             <div class="col-sm-6">
                 <div id="first-step-available" style="display:none;">
                     <form id="next-step-form">
+                        <h3>Available Slots: <span id="available_slots"></span></h3>
                         <label>Time:</label>
                         <select name="time" class="form-control" required id="select-time">
                             <option disabled selected value="">-- Select Time --</option>
@@ -147,12 +148,28 @@
                 $( "#datepicker").datepicker({
                     minDate: 0,
                     maxDate: 20,
-                    beforeShowDay: function(date) {
-                        var day = date.getDay()
-                        return [(day != 0 && day != 6),  '']
-                    }
+                    beforeShowDay: disableHoliday
                 });
             });
+            var holidays = [];
+            function holidayConverter() {
+                let holiday_dates = {!! json_encode($holidays, JSON_HEX_TAG) !!}; 
+                var myObject = { 'a': 1, 'b': 2, 'c': 3 };
+
+                Object.keys(holiday_dates).map(function(key, index) {
+                    holidays.push(holiday_dates[key].date);
+                });
+            }
+            holidayConverter();
+            function disableHoliday(date) {
+                var string = $.datepicker.formatDate('yy-mm-dd', date);
+                    
+                var filterDate = new Date(string);
+                var day = filterDate.getDay();
+                var isHoliday = ($.inArray(string, holidays) != -1);
+                
+                return [day != 0 && day !=6 && !isHoliday]
+            }
             $('#datepicker').change(function(e) {
                 var val = $(this).val()
                 $('#date-value').val(val)
@@ -178,6 +195,7 @@
                         $('#overlay').hide();
                         if (result.first_step) {
                             $('#first-step-available').show();
+                            $('#available_slots').html(result.available_slots);
                         } else {
                             $('#first-step-not-available').show();
                         }
@@ -225,7 +243,6 @@
                             $('#zone-name').val(result.resident.zone.name)
                             $('#age').val(result.resident.age)
                             $('#resident-id-value').val(result.resident.id)
-                            console.log(result.appointment)
                             $('#appointment-id-value').val(result.appointment.id)
                         }
 

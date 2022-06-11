@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Resident;
+use App\Models\Holiday;
 use Carbon\Carbon;
 
 class AppointmentController extends Controller
@@ -24,9 +25,10 @@ class AppointmentController extends Controller
         return view('appointment.index',compact('data'));
     }
 
-    public function create()
+    public function welcome()
     {
-        //
+        $holidays = Holiday::select('date')->get();
+        return view('welcome',compact('holidays'));
     }
 
     public function store(Request $request)
@@ -98,7 +100,8 @@ class AppointmentController extends Controller
         }
 
         return response()->json([
-            'first_step' => $first_step,
+            'first_step' => $first_step[0],
+            'available_slots' => 30 - $first_step[1],
             'am' => $am,
             'pm' => $pm
         ]);
@@ -153,7 +156,7 @@ class AppointmentController extends Controller
             }   
         }
 
-        return $available;
+        return [$available,$appointment_count];
     }
 
     public function timeAvailability(Request $request, $time)

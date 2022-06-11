@@ -4,12 +4,11 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[AppointmentController::class, 'welcome'])->name('welcome');
 Route::get('/congrats', function () {
     return view('congrats');
 });
@@ -23,6 +22,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('zone',ZoneController::class);
     Route::resource('resident',ResidentController::class);
     Route::resource('appointment',AppointmentController::class);
+    Route::resource('holiday',HolidayController::class);
 
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 

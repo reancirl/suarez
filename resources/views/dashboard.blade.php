@@ -55,6 +55,8 @@
     <script>
     var may = '{{ $may_count }}';
     var june = '{{ $june_count }}';
+    var july = '{{ $july_count }}';
+    var august = '{{ $august_count }}';
 
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const data = {
@@ -64,7 +66,7 @@
             label: "Indigency Request",
             backgroundColor: "hsl(252, 82.9%, 67.8%)",
             borderColor: "hsl(252, 82.9%, 67.8%)",
-            data: [0, 0, 0, 0, may, june, 0, 0, 0, 0, 0 ,0],
+            data: [0, 0, 0, 0, may, june, july, august, 0, 0, 0 ,0],
         },
         ],
     };

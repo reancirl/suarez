@@ -19,6 +19,9 @@ class DashboardController extends Controller
 
         $may_count = Appointment::whereMonth('date','05')->where('document_type','indigency')->count();
         $june_count = Appointment::whereMonth('date','06')->where('document_type','indigency')->count();
+        $july_count = Appointment::whereMonth('date','07')->where('document_type','indigency')->count();
+        $august_count = Appointment::whereMonth('date','08')->where('document_type','indigency')->count();
+
 
         $resident_zone = Zone::withCount('residents')->orderBy('residents_count','desc')->take(6)->get();
         $zone1 = null;
@@ -65,7 +68,7 @@ class DashboardController extends Controller
             }
         }
 
-        return view('dashboard',compact('zone_count','resident_count','appointment_count','may_count','june_count','zone1','zone2','zone3','zone4','zone5','zone6','zone1_count','zone2_count','zone3_count','zone4_count','zone5_count','zone6_count'));
+        return view('dashboard',compact('zone_count','resident_count','appointment_count','may_count','june_count','zone1','zone2','zone3','zone4','zone5','zone6','zone1_count','zone2_count','zone3_count','zone4_count','zone5_count','zone6_count','july_count','august_count'));
     }
 
     public function import() 
