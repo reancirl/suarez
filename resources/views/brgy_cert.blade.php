@@ -34,11 +34,21 @@
         This is to certify that <u><b>{{ $appointment->resident->full_name }} </b></u>, <u><b>{{ $appointment->resident->age }} </b></u> years old
         {{ ucWords($appointment->resident->civil_status) }} a bonafide resident of {{ $appointment->resident->zone->name }}, Suarez, Iligan City.
     </div>
+    @if($appointment->document_type == 'brgy_cert')
+        <div class="small" style="padding-top:1.5rem;font-size:1rem;">
+            This is to certify that no derogatory record has been filed against him/her in this office
+        </div>
+    @else
+        <div class="small" style="padding-top:1.5rem;font-size:1rem;">
+            Certify further that he/she belongs to an INDIGENT FAMILY and has LOW INCOME to support his/her family per record available in the office.
+        </div>
+    @endif
     <div class="small" style="padding-top:1.5rem;font-size:1rem;">
-        This is to certify that no derogatory record has been filed against him/her in this office
-    </div>
-    <div class="small" style="padding-top:1.5rem;font-size:1rem;">
-        This certification is being issued upon the request of the above named person for <u><b>{{ ucWords($appointment->purpose) }} </b></u>
+        @if($appointment->document_type == 'brgy_cert')
+            This certification is being issued upon the request of the above named person for <u><b>{{ ucWords($appointment->purpose) }} </b></u>.
+        @else
+            This certification is being issued upon the request of the above named person to support whatever legal purposes it may serve.
+        @endif
     </div>
     <div class="small" style="padding-top:1.5rem;font-size:1rem;">
         Issued and done this on <u><b>{{ date('M d, Y',strtotime($appointment->date_issued)) }} </b></u>.
